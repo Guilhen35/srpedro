@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Sr. Pedro Barbearia</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <main class="app">
+
+    <section class="hero">
+      <header class="topo">
+        <img
+          src="assets/logo.png"
+          alt="Logo Sr. Pedro Barbearia"
+          class="logo"
+        >
+      </header>
+
+      <div class="conteudo">
+        <span class="tag">BARBEARIA PREMIUM</span>
+
+        <h1>
+          Seu estilo,
+          nossa arte.
+        </h1>
+
+        <p>
+          Agende seu horário com praticidade
+          e garanta seu visual com os melhores barbeiros.
+        </p>
+
+        <a
+          href="#barbeiros"
+          class="botao-principal"
+        >
+          Agendar horário
+        </a>
+      </div>
+    </section>
+
+    <section class="beneficios">
+      <div class="card">
+        <h3>Profissionais</h3>
+        <p>Barbeiros especializados em cortes clássicos e modernos.</p>
+      </div>
+
+      <div class="card">
+        <h3>Cortes atuais</h3>
+        <p>Degradê, disfarçado, nevou, desenhos e estilos personalizados.</p>
+      </div>
+
+      <div class="card">
+        <h3>Agendamento fácil</h3>
+        <p>Escolha o barbeiro, serviço, data e horário direto pelo celular.</p>
+      </div>
+    </section>
+
+    <section class="barbeiros" id="barbeiros">
+      <h2>Escolha seu barbeiro</h2>
+
+      <p class="barbeiros-subtitulo">
+        Primeiro selecione o profissional desejado.
+      </p>
+
+      <div class="barbeiros-container"></div>
+    </section>
+
+    <section class="servicos" id="servicos">
+      <h2>Agora escolha o serviço</h2>
+
+      <div class="filtros">
+        <button onclick="filtrarServicos('todos')">Todos</button>
+        <button onclick="filtrarServicos('cortes')">Cortes</button>
+        <button onclick="filtrarServicos('barba')">Barba</button>
+        <button onclick="filtrarServicos('quimica')">Química</button>
+        <button onclick="filtrarServicos('extras')">Extras</button>
+      </div>
+
+      <div class="cards"></div>
+    </section>
+
+    <section class="agenda" id="agenda">
+      <h2>Escolha o dia</h2>
+
+      <p class="agenda-subtitulo">
+        Selecione uma data disponível para ver os horários.
+      </p>
+
+      <div class="calendario" id="calendario"></div>
+
+      <h3 class="titulo-horarios">
+        Horários disponíveis
+      </h3>
+
+      <div class="horarios"></div>
+
+      <!-- CONFIRMAÇÃO -->
+
+      <section
+        class="confirmacao"
+        id="confirmacao"
+      >
+
+        <h2>
+          Finalizar agendamento
+        </h2>
+
+        <p class="confirmacao-subtitulo">
+          Preencha seus dados para continuar.
+        </p>
+
+        <div class="resumo-agendamento">
+
+          <div class="resumo-item">
+            <span>Barbeiro</span>
+            <strong id="resumoBarbeiro">-</strong>
+          </div>
+
+          <div class="resumo-item">
+            <span>Serviço</span>
+            <strong id="resumoServico">-</strong>
+          </div>
+
+          <div class="resumo-item">
+            <span>Horário</span>
+            <strong id="resumoHorario">-</strong>
+          </div>
+
+          <div class="resumo-item">
+            <span>Valor</span>
+            <strong id="resumoValor">-</strong>
+          </div>
+
+          <div class="resumo-item destaque">
+            <span>Sinal 50%</span>
+            <strong id="resumoSinal">-</strong>
+          </div>
+
+        </div>
+
+        <div class="formulario">
+
+          <input
+            type="text"
+            id="nomeCliente"
+            placeholder="Seu nome"
+          >
+
+          <input
+            type="tel"
+            id="telefoneCliente"
+            placeholder="WhatsApp"
+          >
+
+          <textarea
+            id="observacoesCliente"
+            placeholder="Observações (opcional)"
+          ></textarea>
+
+          <button
+            class="botao-confirmar"
+            onclick="mostrarPagamentoPix()"
+          >
+            Continuar para pagamento
+          </button>
+
+          <div
+            class="pagamento-pix"
+            id="pagamentoPix"
+          >
+
+            <h3>Pagamento do sinal</h3>
+
+            <p>
+              Para confirmar seu horário, faça o pagamento de 50% do valor.
+            </p>
+
+            <div class="pix-box">
+              <span>Chave Pix</span>
+              <strong id="chavePix">43999999999</strong>
+            </div>
+
+            <div class="pix-box">
+              <span>Valor do sinal</span>
+              <strong id="valorPix">-</strong>
+            </div>
+
+            <button
+              class="botao-confirmar"
+              onclick="confirmarAgendamento()"
+            >
+              Já paguei / Enviar comprovante
+            </button>
+
+          </div>
+
+        </div>
+
+      </section>
+
+    </section>
+
+  </main>
+
+  <a
+    href="https://wa.me/5543999999999"
+    class="whatsapp"
+    target="_blank"
+  >
+    WhatsApp
+  </a>
+
+  <script src="script.js"></script>
+
+</body>
+</html>
