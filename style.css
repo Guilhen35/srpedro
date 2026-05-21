@@ -21,8 +21,8 @@ body {
 }
 
 .hero {
-  min-height: 85vh;
-  padding: 24px 20px;
+  min-height: auto;
+  padding: 24px 20px 45px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -105,7 +105,7 @@ p {
 /* BARBEIROS */
 
 .barbeiros {
-  padding: 60px 20px;
+  padding: 60px 15px 120px;
   background: #080808;
 }
 
@@ -152,7 +152,7 @@ p {
 
 .barbeiro-card img {
   width: 100%;
-  height: 170px;
+  height: 200px;
   object-fit: cover;
   background: #151515;
 }
@@ -567,4 +567,83 @@ p {
 .pix-box strong {
   color: #ffffff;
   font-size: 18px;
+}
+
+/* AJUSTES RESPONSIVOS PARA TABLET E DESKTOP */
+
+@media (min-width: 768px) {
+  .hero,
+  .beneficios,
+  .barbeiros,
+  .servicos,
+  .agenda,
+  .confirmacao {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .beneficios {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .barbeiros-container,
+  .cards {
+    justify-content: center;
+    overflow-x: visible;
+    flex-wrap: wrap;
+  }
+
+  .barbeiro-card {
+    width: 210px;
+    min-width: 210px;
+  }
+
+  .servico-card {
+    width: 280px;
+    min-width: 280px;
+  }
+
+  .filtros {
+    justify-content: center;
+    overflow-x: visible;
+    flex-wrap: wrap;
+  }
+
+  h1 {
+    font-size: 56px;
+  }
+
+  .conteudo p {
+    max-width: 560px;
+    margin: 0 auto;
+  }
+}
+
+/* CORREÇÃO MOBILE - CARDS NÃO CORTAREM NA LATERAL */
+
+@media (max-width: 767px) {
+  .barbeiros-container,
+  .cards,
+  .filtros {
+    padding-left: 4px;
+    padding-right: 20px;
+  }
+
+  .barbeiro-card:first-child,
+  .servico-card:first-child {
+    margin-left: 0;
+  }
+
+  .barbeiro-card:last-child,
+  .servico-card:last-child {
+    margin-right: 20px;
+  }
+}
+
+/* ESPAÇO EXTRA APENAS NO FINAL DO SCROLL MOBILE */
+
+@media (max-width: 767px) {
+  body {
+    padding-bottom: 80px;
+  }
 }
