@@ -546,6 +546,65 @@ Vou enviar o comprovante do Pix para confirmar o horário.
   gerarHorarios();
 }
 
+function alternarGaleria() {
+  const galeriaConteudo = document.querySelector("#galeriaConteudo");
+  const botaoGaleria = document.querySelector("#botaoGaleria");
+
+  galeriaConteudo.classList.toggle("mostrar");
+
+  if (galeriaConteudo.classList.contains("mostrar")) {
+    botaoGaleria.textContent = "Esconder nosso trabalho";
+  } else {
+    botaoGaleria.textContent = "Ver nosso trabalho";
+  }
+}
+
+function alternarHistoria() {
+  const historiaConteudo = document.querySelector("#historiaConteudo");
+  const botaoHistoria = document.querySelector("#botaoHistoria");
+
+  historiaConteudo.classList.toggle("mostrar");
+
+  if (historiaConteudo.classList.contains("mostrar")) {
+    botaoHistoria.textContent = "Esconder história";
+  } else {
+    botaoHistoria.textContent = "Conhecer nossa história";
+  }
+}
+
 renderizarBarbeiros();
 renderizarServicos(servicos);
 esconderFluxoInicial();
+
+function alternarMenu() {
+  const menuLinks = document.querySelector("#menuLinks");
+  menuLinks.classList.toggle("mostrar");
+}
+
+document.querySelectorAll(".menu-links a").forEach(link => {
+  link.addEventListener("click", () => {
+    document.querySelector("#menuLinks").classList.remove("mostrar");
+  });
+});
+
+window.addEventListener("scroll", () => {
+  const menu = document.querySelector(".menu-premium");
+
+  if (window.scrollY > 40) {
+    menu.classList.add("menu-scroll");
+  } else {
+    menu.classList.remove("menu-scroll");
+  }
+});
+
+function abrirSecaoMenu(idSecao) {
+  const secao = document.querySelector(idSecao);
+
+  secao.classList.add("mostrar");
+
+  secao.scrollIntoView({
+    behavior: "smooth"
+  });
+
+  document.querySelector("#menuLinks").classList.remove("mostrar");
+}

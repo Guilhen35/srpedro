@@ -21,11 +21,35 @@ body {
 }
 
 .hero {
-  min-height: auto;
-  padding: 24px 20px 45px;
+  min-height: 100vh;
+  padding: 120px 20px 80px;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  position: relative;
+}
+
+.hero::before {
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.45),
+      rgba(0, 0, 0, 0.75)
+    );
+
+  z-index: 1;
+}
+
+.topo,
+.conteudo {
+  position: relative;
+  z-index: 2;
 }
 
 .topo {
@@ -101,6 +125,186 @@ p {
 .card p {
   font-size: 14px;
 }
+
+/* AVALIAÇÕES */
+
+.avaliacoes {
+  padding: 60px 20px;
+  background: #050505;
+  text-align: center;
+}
+
+.avaliacoes .tag {
+  display: inline-block;
+  margin-bottom: 14px;
+}
+
+.avaliacoes h2 {
+  font-size: 32px;
+  line-height: 1.2;
+  margin-bottom: 35px;
+  color: #ffffff;
+}
+
+.avaliacoes-container {
+  display: grid;
+  gap: 18px;
+}
+
+.avaliacao-card {
+  background: linear-gradient(145deg, #111111, #070707);
+  border: 1px solid rgba(212, 164, 60, 0.25);
+  border-radius: 20px;
+  padding: 24px;
+  text-align: left;
+  transition: 0.3s;
+}
+
+.avaliacao-card:hover {
+  transform: translateY(-4px);
+  border-color: #d4a43c;
+  box-shadow: 0 0 20px rgba(212, 164, 60, 0.15);
+}
+
+.avaliacao-card p {
+  color: #e5e5e5;
+  font-size: 15px;
+  line-height: 1.7;
+  margin-bottom: 18px;
+}
+
+.avaliacao-card strong {
+  display: block;
+  color: #d4a43c;
+  font-size: 18px;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+}
+
+.avaliacao-card span {
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+/* GALERIA */
+
+.galeria {
+  padding: 60px 20px;
+  background: #080808;
+  text-align: center;
+}
+
+.galeria .tag {
+  display: inline-block;
+  margin-bottom: 14px;
+}
+
+.galeria h2 {
+  font-size: 30px;
+  line-height: 1.2;
+  margin-bottom: 12px;
+  color: #ffffff;
+}
+
+.galeria-subtitulo {
+  font-size: 15px;
+  color: #bbbbbb;
+  margin-bottom: 30px;
+}
+
+.galeria-container {
+  display: none;
+  gap: 16px;
+}
+
+.galeria-container img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  border-radius: 20px;
+  border: 1px solid rgba(212, 164, 60, 0.25);
+  box-shadow: 0 0 22px rgba(0, 0, 0, 0.45);
+  transition: 0.3s;
+}
+
+.galeria-container img:hover {
+  transform: scale(1.02);
+  border-color: #d4a43c;
+}
+
+/* HISTÓRIA */
+
+.historia {
+  padding: 60px 20px;
+  background: #050505;
+  text-align: center;
+}
+
+.historia h2 {
+  font-size: 30px;
+  line-height: 1.2;
+  margin: 14px 0 28px;
+}
+
+.botao-historia {
+  border: none;
+
+  margin-bottom: 28px;
+
+  padding: 15px 28px;
+
+  border-radius: 999px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #c89b3c,
+      #f2d27a,
+      #a87520
+    );
+
+  color: #111111;
+
+  font-weight: bold;
+
+  text-transform: uppercase;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 0 20px
+    rgba(200, 155, 60, 0.25);
+
+  transition: 0.3s;
+}
+
+.botao-historia:hover {
+  transform: scale(1.03);
+}
+
+.historia-conteudo {
+  display: none;
+
+  max-width: 700px;
+
+  margin: 0 auto;
+
+  text-align: left;
+}
+
+.historia-conteudo.mostrar {
+  display: block;
+}
+
+.historia-conteudo p {
+  margin-bottom: 18px;
+
+  line-height: 1.8;
+
+  color: #d8d8d8;
+}
+
 
 /* BARBEIROS */
 
@@ -349,7 +553,7 @@ p {
 }
 
 .dia-fechado {
-  opacity: 0.3;
+  opacity: 0.35;
   pointer-events: none;
 }
 
@@ -385,55 +589,11 @@ p {
   color: black;
 }
 
-/* WHATSAPP */
-
-.whatsapp {
-  position: fixed;
-  right: 20px;
-  bottom: 20px;
-  background: #25d366;
-  color: white;
-  text-decoration: none;
-  padding: 14px 18px;
-  border-radius: 999px;
-  font-weight: bold;
-  z-index: 999;
-}
-
-/* AJUSTES MOBILE */
-
-@media(max-width:480px) {
-  .calendario {
-    gap: 5px;
-  }
-
-  .dia {
-    font-size: 13px;
-    padding: 10px 0;
-  }
-
-  .dia-semana {
-    font-size: 11px;
-  }
-}
-
 .horario-selecionado {
   background: linear-gradient(135deg, #d4af37, #f6d365);
   color: #111;
   border-color: #d4af37;
   font-weight: 700;
-}
-
-.horario-selecionado {
-  background: linear-gradient(135deg, #d4af37, #f6d365);
-  color: #111;
-  border-color: #d4af37;
-  font-weight: 700;
-}
-
-.dia-fechado {
-  opacity: 0.35;
-  pointer-events: none;
 }
 
 /* CONFIRMAÇÃO */
@@ -569,11 +729,62 @@ p {
   font-size: 18px;
 }
 
-/* AJUSTES RESPONSIVOS PARA TABLET E DESKTOP */
+/* WHATSAPP PREMIUM */
+
+.whatsapp {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  width: 62px;
+  height: 62px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #25d366, #1ebe5d);
+  color: white;
+  text-decoration: none;
+  border-radius: 50%;
+  font-size: 28px;
+  font-weight: bold;
+  box-shadow:
+    0 0 20px rgba(37, 211, 102, 0.45),
+    0 0 40px rgba(37, 211, 102, 0.15);
+  z-index: 999;
+  transition: 0.3s;
+}
+
+.whatsapp:hover {
+  transform: scale(1.08);
+}
+
+.whatsapp:active {
+  transform: scale(0.96);
+}
+
+/* MOBILE */
+
+@media (max-width: 480px) {
+  .calendario {
+    gap: 5px;
+  }
+
+  .dia {
+    font-size: 13px;
+    padding: 10px 0;
+  }
+
+  .dia-semana {
+    font-size: 11px;
+  }
+}
+
+/* TABLET E DESKTOP */
 
 @media (min-width: 768px) {
   .hero,
   .beneficios,
+  .avaliacoes,
+  .galeria,
   .barbeiros,
   .servicos,
   .agenda,
@@ -586,6 +797,15 @@ p {
     grid-template-columns: repeat(3, 1fr);
   }
 
+  .avaliacoes-container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .galeria-container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  
   .barbeiros-container,
   .cards {
     justify-content: center;
@@ -619,19 +839,18 @@ p {
   }
 }
 
-/* CORREÇÃO MOBILE - CARDS NÃO CORTAREM NA LATERAL */
+/* CORREÇÃO MOBILE */
 
 @media (max-width: 767px) {
+  body {
+    padding-bottom: 80px;
+  }
+
   .barbeiros-container,
   .cards,
   .filtros {
     padding-left: 4px;
     padding-right: 20px;
-  }
-
-  .barbeiro-card:first-child,
-  .servico-card:first-child {
-    margin-left: 0;
   }
 
   .barbeiro-card:last-child,
@@ -640,10 +859,135 @@ p {
   }
 }
 
-/* ESPAÇO EXTRA APENAS NO FINAL DO SCROLL MOBILE */
+.botao-galeria {
+  border: none;
+  margin-bottom: 28px;
+  padding: 15px 28px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #c89b3c, #f2d27a, #a87520);
+  color: #111111;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: 0 0 20px rgba(200, 155, 60, 0.25);
+}
 
-@media (max-width: 767px) {
-  body {
-    padding-bottom: 80px;
+
+.galeria-container.mostrar {
+  display: grid;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.menu-premium {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  padding: 14px 20px;
+  background: rgba(5, 5, 5, 0.92);
+  border-bottom: 1px solid rgba(212, 164, 60, 0.25);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  backdrop-filter: blur(12px);
+}
+
+.menu-logo {
+  color: #d4a43c;
+  text-decoration: none;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.menu-botao {
+  background: none;
+  border: none;
+  color: #d4a43c;
+  font-size: 28px;
+  cursor: pointer;
+}
+
+.menu-links {
+  position: absolute;
+  top: 60px;
+  left: 0;
+  width: 100%;
+  background: #080808;
+  display: none;
+  flex-direction: column;
+  text-align: center;
+  padding: 20px;
+  gap: 18px;
+  border-bottom: 1px solid rgba(212, 164, 60, 0.25);
+}
+
+.menu-links.mostrar {
+  display: flex;
+}
+
+.menu-links a {
+  color: #ffffff;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 13px;
+  letter-spacing: 2px;
+}
+
+.menu-agendar {
+  color: #111111 !important;
+  background: linear-gradient(135deg, #c89b3c, #f2d27a, #a87520);
+  padding: 12px 18px;
+  border-radius: 999px;
+  font-weight: bold;
+}
+
+.hero {
+  padding-top: 95px;
+}
+
+@media (min-width: 768px) {
+  .menu-premium {
+    padding: 16px 60px;
   }
+
+  .menu-botao {
+    display: none;
+  }
+
+  .menu-links {
+    position: static;
+    display: flex;
+    flex-direction: row;
+    width: auto;
+    background: transparent;
+    padding: 0;
+    border: none;
+    align-items: center;
+    gap: 28px;
+  }
+
+  .menu-links a:hover {
+    color: #d4a43c;
+    transition: 0.3s;
+  }
+}
+
+.menu-scroll {
+  background: rgba(0, 0, 0, 0.98);
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.45),
+    0 0 20px rgba(212, 164, 60, 0.08);
+}
+
+.secao-escondida {
+  display: none;
+}
+
+.secao-escondida.mostrar {
+  display: block;
 }

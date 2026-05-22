@@ -15,9 +15,53 @@
 
 <body>
 
+  <header class="menu-premium">
+    <a href="#inicio" class="menu-logo">Sr. Pedro</a>
+
+    <button class="menu-botao" onclick="alternarMenu()">
+      ☰
+    </button>
+
+    <nav class="menu-links" id="menuLinks">
+  <a href="#inicio">Início</a>
+
+  <a
+    href="#galeria"
+    onclick="abrirSecaoMenu('#galeria')"
+  >
+    Nosso trabalho
+  </a>
+
+  <a
+    href="#historia"
+    onclick="abrirSecaoMenu('#historia')"
+  >
+    História
+  </a>
+
+  <a
+    href="#avaliacoes"
+    onclick="abrirSecaoMenu('#avaliacoes')"
+  >
+    Avaliações
+  </a>
+
+  <a href="#barbeiros">
+    Barbeiros
+  </a>
+
+  <a
+    href="#barbeiros"
+    class="menu-agendar"
+  >
+    Agendar
+  </a>
+</nav>
+  </header>
+
   <main class="app">
 
-    <section class="hero">
+    <section class="hero" id="inicio">
       <header class="topo">
         <img
           src="assets/logo.png"
@@ -49,6 +93,7 @@
     </section>
 
     <section class="beneficios">
+
       <div class="card">
         <h3>Profissionais</h3>
         <p>Barbeiros especializados em cortes clássicos e modernos.</p>
@@ -63,6 +108,137 @@
         <h3>Agendamento fácil</h3>
         <p>Escolha o barbeiro, serviço, data e horário direto pelo celular.</p>
       </div>
+
+    </section>
+
+    <section class="avaliacoes secao-escondida" id="avaliacoes">
+
+      <span class="tag">EXPERIÊNCIA PREMIUM</span>
+
+      <h2>
+        Mais que clientes.
+        <br>
+        Uma experiência de respeito.
+      </h2>
+
+      <div class="avaliacoes-container">
+
+        <div class="avaliacao-card">
+          <p>
+            “Atendimento top, corte muito bem feito
+            e ambiente diferenciado.”
+          </p>
+
+          <strong>★★★★★</strong>
+
+          <span>João Pedro</span>
+        </div>
+
+        <div class="avaliacao-card">
+          <p>
+            “Agendamento fácil e barbeiros
+            muito profissionais.”
+          </p>
+
+          <strong>★★★★★</strong>
+
+          <span>Lucas Andrade</span>
+        </div>
+
+        <div class="avaliacao-card">
+          <p>
+            “Barbearia premium de verdade.
+            Recomendo demais.”
+          </p>
+
+          <strong>★★★★★</strong>
+
+          <span>Rafael Martins</span>
+        </div>
+
+      </div>
+
+    </section>
+
+    <section class="galeria secao-escondida" id="galeria">
+
+      <span class="tag">NOSSO TRABALHO</span>
+
+      <h2>
+        Momentos que mostram a experiência Sr. Pedro
+      </h2>
+
+      <p class="galeria-subtitulo">
+        Atendimento, estilo e cuidado em cada detalhe.
+      </p>
+
+      <button
+        class="botao-galeria"
+        id="botaoGaleria"
+        onclick="alternarGaleria()"
+      >
+        Ver nosso trabalho
+      </button>
+
+      <div
+        class="galeria-container"
+        id="galeriaConteudo"
+      >
+
+        <img src="assets/galeria1.jpeg" alt="Barbeiro atendendo cliente">
+        <img src="assets/galeria2.jpeg" alt="Procedimento capilar na barbearia">
+        <img src="assets/galeria3.jpeg" alt="Finalização de corte">
+        <img src="assets/galeria4.jpeg" alt="Atendimento visto pelo espelho">
+        <img src="assets/galeria5.jpeg" alt="Cliente na barbearia">
+        <img src="assets/galeria6.jpeg" alt="Corte em andamento">
+
+      </div>
+
+    </section>
+
+    <section class="historia secao-escondida" id="historia">
+
+      <span class="tag">NOSSA HISTÓRIA</span>
+
+      <h2>
+        Mais que cortes.
+        <br>
+        Construindo experiências.
+      </h2>
+
+      <button
+        class="botao-historia"
+        id="botaoHistoria"
+        onclick="alternarHistoria()"
+      >
+        Conhecer nossa história
+      </button>
+
+      <div
+        class="historia-conteudo"
+        id="historiaConteudo"
+      >
+
+        <p>
+          A Sr. Pedro Barbearia nasceu com o objetivo
+          de trazer um atendimento diferenciado,
+          unindo estilo, conforto e experiência premium.
+        </p>
+
+        <p>
+          Mais do que apenas cortar cabelo,
+          buscamos criar um ambiente onde cada cliente
+          se sinta valorizado e confiante.
+        </p>
+
+        <p>
+          Nossa missão é entregar qualidade,
+          personalidade e um atendimento de respeito
+          em cada detalhe.
+        </p>
+
+      </div>
+
     </section>
 
     <section class="barbeiros" id="barbeiros">
@@ -104,16 +280,9 @@
 
       <div class="horarios"></div>
 
-      <!-- CONFIRMAÇÃO -->
+      <section class="confirmacao" id="confirmacao">
 
-      <section
-        class="confirmacao"
-        id="confirmacao"
-      >
-
-        <h2>
-          Finalizar agendamento
-        </h2>
+        <h2>Finalizar agendamento</h2>
 
         <p class="confirmacao-subtitulo">
           Preencha seus dados para continuar.
@@ -174,10 +343,7 @@
             Continuar para pagamento
           </button>
 
-          <div
-            class="pagamento-pix"
-            id="pagamentoPix"
-          >
+          <div class="pagamento-pix" id="pagamentoPix">
 
             <h3>Pagamento do sinal</h3>
 
@@ -213,11 +379,12 @@
   </main>
 
   <a
-    href="https://wa.me/5543999999999"
+    href="https://wa.me/5543999999999?text=Olá!%20Gostaria%20de%20agendar%20um%20horário%20na%20Sr.%20Pedro%20Barbearia."
     class="whatsapp"
     target="_blank"
+    aria-label="Falar no WhatsApp"
   >
-    WhatsApp
+    ✆
   </a>
 
   <script src="script.js"></script>
