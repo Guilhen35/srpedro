@@ -16,81 +16,111 @@
 <body>
 
   <header class="menu-premium">
-    <a href="#inicio" class="menu-logo">Sr. Pedro</a>
-
-    <button class="menu-botao" onclick="alternarMenu()">
-      ☰
-    </button>
-
-    <nav class="menu-links" id="menuLinks">
-  <a href="#inicio">Início</a>
 
   <a
-    href="#galeria"
-    onclick="abrirSecaoMenu('#galeria')"
+    href="#inicio"
+    class="menu-logo"
   >
-    Nosso trabalho
+    Sr. Pedro
   </a>
 
-  <a
-    href="#historia"
-    onclick="abrirSecaoMenu('#historia')"
+  <button
+    class="menu-botao"
+    onclick="alternarMenu()"
   >
-    História
-  </a>
+    ☰
+  </button>
 
-  <a
-    href="#avaliacoes"
-    onclick="abrirSecaoMenu('#avaliacoes')"
+  <nav
+    class="menu-links"
+    id="menuLinks"
   >
-    Avaliações
-  </a>
 
-  <a href="#barbeiros">
-    Barbeiros
-  </a>
+    <a href="#inicio">
+      Início
+    </a>
 
-  <a
-    href="#barbeiros"
-    class="menu-agendar"
+    <a
+      href="#galeria"
+      onclick="abrirSecaoMenu('#galeria')"
+    >
+      Nosso trabalho
+    </a>
+
+    <a
+      href="#historia"
+      onclick="abrirSecaoMenu('#historia')"
+    >
+      História
+    </a>
+
+    <a
+      href="#avaliacoes"
+      onclick="abrirSecaoMenu('#avaliacoes')"
+    >
+      Avaliações
+    </a>
+
+    <a href="#barbeiros">
+      Barbeiros
+    </a>
+
+    <a
+      href="#barbeiros"
+      class="menu-agendar"
+      onclick="irParaAgendamento()"
+    >
+      Agendar
+    </a>
+
+  </nav>
+
+</header>
+
+<main class="app">
+
+  <section
+    class="hero"
+    id="inicio"
   >
-    Agendar
-  </a>
-</nav>
-  </header>
 
-  <main class="app">
+    <header class="topo">
 
-    <section class="hero" id="inicio">
-      <header class="topo">
-        <img
-          src="assets/logo.png"
-          alt="Logo Sr. Pedro Barbearia"
-          class="logo"
-        >
-      </header>
+      <img
+        src="assets/logo.png"
+        alt="Logo Sr. Pedro Barbearia"
+        class="logo"
+      >
 
-      <div class="conteudo">
-        <span class="tag">BARBEARIA PREMIUM V2</span>
+    </header>
 
-        <h1>
-          Seu estilo,
-          nossa arte.
-        </h1>
+    <div class="conteudo">
 
-        <p>
-          Agende seu horário com praticidade
-          e garanta seu visual com os melhores barbeiros.
-        </p>
+      <span class="tag">
+        BARBEARIA PREMIUM V2
+      </span>
 
-        <a
-          href="#barbeiros"
-          class="botao-principal"
-        >
-          Agendar horário
-        </a>
-      </div>
-    </section>
+      <h1>
+        Seu estilo,
+        nossa arte.
+      </h1>
+
+      <p>
+        Agende seu horário com praticidade
+        e garanta seu visual com os melhores barbeiros.
+      </p>
+
+      <a
+        href="#barbeiros"
+        class="botao-principal"
+        onclick="irParaAgendamento()"
+      >
+        Agendar horário
+      </a>
+
+    </div>
+
+  </section>
 
     <section class="beneficios">
 

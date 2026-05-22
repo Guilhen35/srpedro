@@ -26,6 +26,7 @@ let barbeiroSelecionado = null;
 let servicoSelecionado = null;
 let dataSelecionada = null;
 let horarioSelecionado = null;
+let mesSelecionadoOffset = 0;
 
 const agendamentos = [
   {
@@ -277,11 +278,32 @@ function gerarCalendario() {
   const hoje = new Date();
 
   const ano = hoje.getFullYear();
-  const mes = hoje.getMonth();
+  const mesAtual = hoje.getMonth();
   const diaHoje = hoje.getDate();
 
-  const primeiroDia = new Date(ano, mes, 1);
-  const ultimoDia = new Date(ano, mes + 1, 0);
+  const mesCalendario = mesAtual + mesSelecionadoOffset;
+
+  const primeiroDia = new Date(ano, mesCalendario, 1);
+  const ultimoDia = new Date(ano, mesCalendario + 1, 0);
+
+  const nomeMes = primeiroDia.toLocaleDateString("pt-BR", {
+    month: "long",
+    year: "numeric"
+  });
+
+  calendario.innerHTML += `
+    <div class="controle-mes">
+      <button onclick="trocarMes(0)">
+        Mês atual
+      </button>
+
+      <strong>${nomeMes}</strong>
+
+      <button onclick="trocarMes(1)">
+        Próximo mês
+      </button>
+    </div>
+  `;
 
   const diasSemana = ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sáb"];
 
@@ -296,11 +318,13 @@ function gerarCalendario() {
   }
 
   for (let dia = 1; dia <= ultimoDia.getDate(); dia++) {
-    const data = new Date(ano, mes, dia);
+    const data = new Date(ano, mesCalendario, dia);
     const diaDaSemana = data.getDay();
 
     const domingo = diaDaSemana === 0;
-    const diaPassado = dia < diaHoje;
+    const diaPassado =
+      mesSelecionadoOffset === 0 &&
+      dia < diaHoje;
 
     const bloqueado = domingo || diaPassado;
 
@@ -313,6 +337,14 @@ function gerarCalendario() {
       </div>
     `;
   }
+}
+
+function trocarMes(offset) {
+  mesSelecionadoOffset = offset;
+  dataSelecionada = null;
+  horarioSelecionado = null;
+
+  gerarCalendario();
 }
 
 function selecionarDia(event, dia) {
@@ -409,9 +441,22 @@ function selecionarHorario(event, horario) {
 }
 
 function atualizarResumo() {
+  const hoje = new Date();
+
+  const dataAgendamento = new Date(
+    hoje.getFullYear(),
+    hoje.getMonth() + mesSelecionadoOffset,
+    dataSelecionada
+  );
+
+  const dia = String(dataAgendamento.getDate()).padStart(2, "0");
+  const mes = String(dataAgendamento.getMonth() + 1).padStart(2, "0");
+
+  const dataFormatada = `${dia}/${mes}`;
+
   resumoBarbeiro.textContent = barbeiroSelecionado.nome;
   resumoServico.textContent = servicoSelecionado.nome;
-  resumoHorario.textContent = `Dia ${dataSelecionada} às ${horarioSelecionado}`;
+  resumoHorario.textContent = `${dataFormatada} às ${horarioSelecionado}`;
   resumoValor.textContent = `R$ ${servicoSelecionado.preco}`;
   resumoSinal.textContent = `R$ ${(servicoSelecionado.preco / 2).toFixed(2)}`;
 }
@@ -476,11 +521,18 @@ function confirmarAgendamento() {
   const valorSinal = servicoSelecionado.preco / 2;
 
   const hoje = new Date();
-  const ano = hoje.getFullYear();
-  const mes = String(hoje.getMonth() + 1).padStart(2, "0");
-  const dia = String(dataSelecionada).padStart(2, "0");
 
-  const dataCompleta = `${ano}-${mes}-${dia}`;
+  const dataAgendamento = new Date(
+    hoje.getFullYear(),
+    hoje.getMonth() + mesSelecionadoOffset,
+    dataSelecionada
+  );
+
+  const ano = dataAgendamento.getFullYear();
+  const mes = String(dataAgendamento.getMonth() + 1).padStart(2, "0");
+  const dia = String(dataAgendamento.getDate()).padStart(2, "0");
+
+  const dataCompleta = `${dia}/${mes}/${ano}`;
   const criadoEm = new Date().toISOString();
 
   agendamentos.push({
@@ -540,8 +592,7 @@ Vou enviar o comprovante do Pix para confirmar o horário.
 
   confirmacao.classList.remove("mostrar");
 
-  document.querySelector("#pagamentoPix")
-    .classList.remove("mostrar");
+  document.querySelector("#pagamentoPix").classList.remove("mostrar");
 
   gerarHorarios();
 }
@@ -598,13 +649,47 @@ window.addEventListener("scroll", () => {
 });
 
 function abrirSecaoMenu(idSecao) {
-  const secao = document.querySelector(idSecao);
 
-  secao.classList.add("mostrar");
+  const secoes = [
+    "#galeria",
+    "#historia",
+    "#avaliacoes"
+  ];
 
-  secao.scrollIntoView({
+  secoes.forEach(secaoId => {
+    const secao = document.querySelector(secaoId);
+
+    if (secaoId === idSecao) {
+      secao.classList.add("mostrar");
+    } else {
+      secao.classList.remove("mostrar");
+    }
+  });
+
+  document.querySelector(idSecao).scrollIntoView({
     behavior: "smooth"
   });
 
-  document.querySelector("#menuLinks").classList.remove("mostrar");
+  document.querySelector("#menuLinks")
+    .classList.remove("mostrar");
+}
+
+function irParaAgendamento() {
+
+  document.querySelector("#galeria")
+    .classList.remove("mostrar");
+
+  document.querySelector("#historia")
+    .classList.remove("mostrar");
+
+  document.querySelector("#avaliacoes")
+    .classList.remove("mostrar");
+
+  document.querySelector("#barbeiros")
+    .scrollIntoView({
+      behavior: "smooth"
+    });
+
+  document.querySelector("#menuLinks")
+    .classList.remove("mostrar");
 }
