@@ -32,6 +32,7 @@ const agendamentos = [
   {
     barbeiroId: 1,
     data: 19,
+    mesOffset: 0,
     horario: "15:00"
   }
 ];
@@ -243,7 +244,6 @@ function filtrarServicos(categoria) {
   }
 
   const filtrados = servicos.filter(servico => servico.categoria === categoria);
-
   renderizarServicos(filtrados);
 }
 
@@ -322,15 +322,22 @@ function gerarCalendario() {
     const diaDaSemana = data.getDay();
 
     const domingo = diaDaSemana === 0;
+
     const diaPassado =
       mesSelecionadoOffset === 0 &&
       dia < diaHoje;
 
     const bloqueado = domingo || diaPassado;
 
+    const hojeClasse =
+      mesSelecionadoOffset === 0 &&
+      dia === diaHoje
+        ? "dia-hoje"
+        : "";
+
     calendario.innerHTML += `
       <div
-        class="dia ${bloqueado ? "dia-fechado" : ""}"
+        class="dia ${bloqueado ? "dia-fechado" : ""} ${hojeClasse}"
         onclick="${bloqueado ? "" : `selecionarDia(event, ${dia})`}"
       >
         ${dia}
@@ -376,7 +383,7 @@ function gerarHorarios() {
 
   const hoje = new Date();
   const ano = hoje.getFullYear();
-  const mes = hoje.getMonth();
+  const mes = hoje.getMonth() + mesSelecionadoOffset;
 
   const data = new Date(ano, mes, dataSelecionada);
   const diaDaSemana = data.getDay();
@@ -403,6 +410,7 @@ function gerarHorarios() {
       return (
         agendamento.barbeiroId === barbeiroSelecionado.id &&
         agendamento.data === dataSelecionada &&
+        agendamento.mesOffset === mesSelecionadoOffset &&
         agendamento.horario === horarioFormatado
       );
     });
@@ -418,6 +426,15 @@ function gerarHorarios() {
       >
         ${horarioFormatado}
       </div>
+    `;
+  }
+
+  if (horariosContainer.innerHTML === "") {
+    horariosContainer.innerHTML = `
+      <p class="sem-horarios">
+        Nenhum horário disponível para este dia.
+        Escolha outra data.
+      </p>
     `;
   }
 }
@@ -508,6 +525,7 @@ function confirmarAgendamento() {
     return (
       agendamento.barbeiroId === barbeiroSelecionado.id &&
       agendamento.data === dataSelecionada &&
+      agendamento.mesOffset === mesSelecionadoOffset &&
       agendamento.horario === horarioSelecionado
     );
   });
@@ -543,6 +561,7 @@ function confirmarAgendamento() {
     telefoneBarbeiro: barbeiroSelecionado.telefone,
     servico: servicoSelecionado.nome,
     data: dataSelecionada,
+    mesOffset: mesSelecionadoOffset,
     dataCompleta: dataCompleta,
     criadoEm: criadoEm,
     horario: horarioSelecionado,
@@ -623,10 +642,6 @@ function alternarHistoria() {
   }
 }
 
-renderizarBarbeiros();
-renderizarServicos(servicos);
-esconderFluxoInicial();
-
 function alternarMenu() {
   const menuLinks = document.querySelector("#menuLinks");
   menuLinks.classList.toggle("mostrar");
@@ -649,7 +664,6 @@ window.addEventListener("scroll", () => {
 });
 
 function abrirSecaoMenu(idSecao) {
-
   const secoes = [
     "#galeria",
     "#historia",
@@ -670,26 +684,33 @@ function abrirSecaoMenu(idSecao) {
     behavior: "smooth"
   });
 
-  document.querySelector("#menuLinks")
-    .classList.remove("mostrar");
+  document.querySelector("#menuLinks").classList.remove("mostrar");
 }
 
 function irParaAgendamento() {
+  document.querySelector("#galeria").classList.remove("mostrar");
+  document.querySelector("#historia").classList.remove("mostrar");
+  document.querySelector("#avaliacoes").classList.remove("mostrar");
 
-  document.querySelector("#galeria")
-    .classList.remove("mostrar");
+  document.querySelector("#barbeiros").scrollIntoView({
+    behavior: "smooth"
+  });
 
-  document.querySelector("#historia")
-    .classList.remove("mostrar");
-
-  document.querySelector("#avaliacoes")
-    .classList.remove("mostrar");
-
-  document.querySelector("#barbeiros")
-    .scrollIntoView({
-      behavior: "smooth"
-    });
-
-  document.querySelector("#menuLinks")
-    .classList.remove("mostrar");
+  document.querySelector("#menuLinks").classList.remove("mostrar");
 }
+
+function voltarParaInicio() {
+  document.querySelector("#galeria").classList.remove("mostrar");
+  document.querySelector("#historia").classList.remove("mostrar");
+  document.querySelector("#avaliacoes").classList.remove("mostrar");
+
+  document.querySelector("#inicio").scrollIntoView({
+    behavior: "smooth"
+  });
+
+  document.querySelector("#menuLinks").classList.remove("mostrar");
+}
+
+renderizarBarbeiros();
+renderizarServicos(servicos);
+esconderFluxoInicial();

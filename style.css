@@ -548,8 +548,16 @@ p {
 }
 
 .dia:hover {
-  background: #d4a43c;
+  background: linear-gradient(135deg, #d4a43c, #f6d77c);
+
   color: #111111;
+
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 0 18px rgba(212, 164, 60, 0.28);
+
+  transition: 0.25s;
 }
 
 .dia-fechado {
@@ -585,8 +593,21 @@ p {
 }
 
 .horario:hover {
-  background: #d4a43c;
-  color: black;
+  background:
+    linear-gradient(
+      135deg,
+      #d4a43c,
+      #f6d77c
+    );
+
+  color: #111111;
+
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 0 18px rgba(212, 164, 60, 0.25);
+
+  transition: 0.25s;
 }
 
 .horario-selecionado {
@@ -1021,4 +1042,10 @@ html {
   padding: 10px 12px;
   font-size: 12px;
   cursor: pointer;
+}
+
+.dia-hoje {
+  border: 1px solid #d4a43c;
+  box-shadow:
+    0 0 15px rgba(212, 164, 60, 0.25);
 }
