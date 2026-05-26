@@ -667,7 +667,8 @@ function abrirSecaoMenu(idSecao) {
   const secoes = [
     "#galeria",
     "#historia",
-    "#avaliacoes"
+    "#avaliacoes",
+    "#localizacao"
   ];
 
   secoes.forEach(secaoId => {
@@ -691,6 +692,7 @@ function irParaAgendamento() {
   document.querySelector("#galeria").classList.remove("mostrar");
   document.querySelector("#historia").classList.remove("mostrar");
   document.querySelector("#avaliacoes").classList.remove("mostrar");
+  document.querySelector("#localizacao").classList.remove("mostrar");
 
   document.querySelector("#barbeiros").scrollIntoView({
     behavior: "smooth"
@@ -703,6 +705,7 @@ function voltarParaInicio() {
   document.querySelector("#galeria").classList.remove("mostrar");
   document.querySelector("#historia").classList.remove("mostrar");
   document.querySelector("#avaliacoes").classList.remove("mostrar");
+  document.querySelector("#localizacao").classList.remove("mostrar");
 
   document.querySelector("#inicio").scrollIntoView({
     behavior: "smooth"

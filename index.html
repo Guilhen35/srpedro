@@ -24,30 +24,31 @@
     Sr. Pedro
   </a>
 
-  <button
-    class="menu-botao"
-    onclick="alternarMenu()"
+ <button
+  class="menu-botao"
+  onclick="alternarMenu()"
+>
+  ☰
+</button>
+
+<nav
+  class="menu-links"
+  id="menuLinks"
+>
+
+  <a
+    href="#inicio"
+    onclick="voltarParaInicio()"
   >
-    ☰
-  </button>
+    Início
+  </a>
 
-  <nav
-    class="menu-links"
-    id="menuLinks"
+  <a
+    href="#galeria"
+    onclick="abrirSecaoMenu('#galeria')"
   >
-
-    <a href="#inicio">
-      onclick="voltarParaInici()"
-    >
-      Início
-    </a>
-
-    <a
-      href="#galeria"
-      onclick="abrirSecaoMenu('#galeria')"
-    >
-      Nosso trabalho
-    </a>
+    Nosso trabalho
+  </a>
 
     <a
       href="#historia"
@@ -62,6 +63,13 @@
     >
       Avaliações
     </a>
+
+    <a
+  href="#localizacao"
+  onclick="abrirSecaoMenu('#localizacao')"
+>
+  Localização
+</a>
 
     <a
   href="#barbeiros"
@@ -275,6 +283,31 @@
       </div>
 
     </section>
+
+    <section class="localizacao secao-escondida" id="localizacao">
+
+  <span class="tag">
+    LOCALIZAÇÃO
+  </span>
+
+  <h2>
+    Venha até a Sr. Pedro Barbearia
+  </h2>
+
+  <p class="localizacao-texto">
+    Estamos na Avenida Arapongas, 247, Sala 03,
+    Arapongas - PR.
+  </p>
+
+  <a
+    class="botao-mapa"
+    href="https://www.google.com/maps/search/?api=1&query=Avenida%20Arapongas%20247%20Sala%2003%20Arapongas%20PR"
+    target="_blank"
+  >
+    Abrir no Google Maps
+  </a>
+
+</section>
 
     <section class="barbeiros" id="barbeiros">
       <h2>Escolha seu barbeiro</h2>
