@@ -1,22 +1,22 @@
 const barbeiros = [
   {
     id: 1,
-    nome: "Pedro",
-    especialidade: "Degradê, freestyle e cortes modernos",
+    nome: "Zynho",
+    especialidade: "Degradê, freestyle, Nevou , Platinado, Navalhado ",
     foto: "assets/barbeiro1.jpg",
-    telefone: "5543999999999"
+    telefone: "554398133302"
   },
   {
     id: 2,
     nome: "Lucas",
-    especialidade: "Barba, navalhado e acabamento",
+    especialidade: "Cortes Sociais e acabamentos",
     foto: "assets/barbeiro2.jpg",
     telefone: "5543988888888"
   },
   {
     id: 3,
     nome: "Mateus",
-    especialidade: "Nevou, platinado e química",
+    especialidade: "Cortes Sociais e acabamentos",
     foto: "assets/barbeiro3.jpg",
     telefone: "5543977777777"
   }
